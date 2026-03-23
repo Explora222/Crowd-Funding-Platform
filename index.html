@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FundForge — Back What Matters</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo" onclick="showPage('home')">
+        <span class="logo-icon">◈</span>
+        <span class="logo-text">Fund<em>Forge</em></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#" onclick="showPage('home')" class="nav-link">Home</a>
+        <a href="#" onclick="showPage('explore')" class="nav-link">Explore</a>
+        <a href="#" onclick="showPage('create')" class="nav-link">Start a Project</a>
+        <a href="#" onclick="showPage('contact')" class="nav-link">Contact</a>
+      </div>
+      <div class="nav-actions" id="navActions">
+        <button class="btn btn-ghost" onclick="showModal('loginModal')">Log In</button>
+        <button class="btn btn-primary" onclick="showModal('registerModal')">Sign Up</button>
+      </div>
+      <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- PAGES CONTAINER -->
+  <main id="appContainer">
+
+    <!-- ===== HOME PAGE ===== -->
+    <div id="page-home" class="page active">
+
+      <!-- HERO -->
+      <section class="hero">
+        <div class="hero-bg">
+          <div class="hero-orb orb1"></div>
+          <div class="hero-orb orb2"></div>
+          <div class="hero-orb orb3"></div>
+          <div class="grid-overlay"></div>
+        </div>
+        <div class="hero-content">
+          <div class="hero-badge">✦ Community-Powered Innovation</div>
+          <h1 class="hero-title">
+            Turn Your Big<br>
+            <span class="hero-title-accent">Ideas Into</span><br>
+            Reality
+          </h1>
+          <p class="hero-sub">Join thousands of creators and backers building the future together. No idea is too bold,
+            no dream too big.</p>
+          <div class="hero-cta">
+            <button class="btn btn-hero" onclick="showPage('explore')">Explore Projects</button>
+            <button class="btn btn-hero-ghost" onclick="showPage('create')">Start Creating</button>
+          </div>
+          <div class="hero-stats">
+            <div class="stat-item">
+              <span class="stat-number" data-target="12847">0</span>
+              <span class="stat-label">Projects Funded</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="94" data-prefix="$" data-suffix="M+">0</span>
+              <span class="stat-label">Total Raised</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-item">
+              <span class="stat-number" data-target="230">0</span>
+              <span class="stat-label">Active Creators</span>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <div class="floating-card card-f1">
+            <div class="fc-img" style="background: linear-gradient(135deg,#f97316,#ec4899)"></div>
+            <div class="fc-info">
+              <div class="fc-title">Solar Lantern Kit</div>
+              <div class="fc-progress">
+                <div class="fc-bar" style="width:78%"></div>
+              </div>
+              <div class="fc-meta">78% funded · 12 days left</div>
+            </div>
+          </div>
+          <div class="floating-card card-f2">
+            <div class="fc-img" style="background: linear-gradient(135deg,#6366f1,#06b6d4)"></div>
+            <div class="fc-info">
+              <div class="fc-title">Eco Smart Bottle</div>
+              <div class="fc-progress">
+                <div class="fc-bar" style="width:143%"></div>
+              </div>
+              <div class="fc-meta">143% funded · Goal reached!</div>
+            </div>
+          </div>
+          <div class="floating-card card-f3">
+            <div class="fc-img" style="background: linear-gradient(135deg,#10b981,#3b82f6)"></div>
+            <div class="fc-info">
+              <div class="fc-title">Urban Garden AI</div>
+              <div class="fc-progress">
+                <div class="fc-bar" style="width:55%"></div>
+              </div>
+              <div class="fc-meta">55% funded · 30 days left</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section class="section categories-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-tag">Browse by Category</div>
+            <h2 class="section-title">Find What Inspires You</h2>
+          </div>
+          <div class="categories-grid">
+            <div class="cat-card" onclick="filterCategory('Technology')">
+              <div class="cat-icon">⚡</div>
+              <div class="cat-name">Technology</div>
+              <div class="cat-count" id="cat-tech">0 projects</div>
+            </div>
+            <div class="cat-card" onclick="filterCategory('Arts')">
+              <div class="cat-icon">🎨</div>
+              <div class="cat-name">Arts & Design</div>
+              <div class="cat-count" id="cat-arts">0 projects</div>
+            </div>
+            <div class="cat-card" onclick="filterCategory('Environment')">
+              <div class="cat-icon">🌱</div>
+              <div class="cat-name">Environment</div>
+              <div class="cat-count" id="cat-env">0 projects</div>
+            </div>
+            <div class="cat-card" onclick="filterCategory('Education')">
+              <div class="cat-icon">📚</div>
+              <div class="cat-name">Education</div>
+              <div class="cat-count" id="cat-edu">0 projects</div>
+            </div>
+            <div class="cat-card" onclick="filterCategory('Health')">
+              <div class="cat-icon">❤️</div>
+              <div class="cat-name">Health</div>
+              <div class="cat-count" id="cat-health">0 projects</div>
+            </div>
+            <div class="cat-card" onclick="filterCategory('Food')">
+              <div class="cat-icon">🍃</div>
+              <div class="cat-name">Food & Drink</div>
+              <div class="cat-count" id="cat-food">0 projects</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FEATURED PROJECTS -->
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-tag">Editor's Picks</div>
+            <h2 class="section-title">Featured Projects</h2>
+            <a href="#" class="section-link" onclick="showPage('explore')">View All →</a>
+          </div>
+          <div class="projects-grid" id="homeFeaturedGrid"></div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section class="section how-section">
+        <div class="container">
+          <div class="section-header">
+            <div class="section-tag">Simple Process</div>
+            <h2 class="section-title">How FundForge Works</h2>
+          </div>
+          <div class="steps-grid">
+            <div class="step-card">
+              <div class="step-num">01</div>
+              <div class="step-icon">✦</div>
+              <h3>Create Your Project</h3>
+              <p>Share your idea with a compelling story, set your funding goal and deadline.</p>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-card">
+              <div class="step-num">02</div>
+              <div class="step-icon">◈</div>
+              <h3>Spread the Word</h3>
+              <p>Share your campaign with friends, family and our community of eager backers.</p>
+            </div>
+            <div class="step-connector"></div>
+            <div class="step-card">
+              <div class="step-num">03</div>
+              <div class="step-icon">★</div>
+              <h3>Get Funded</h3>
+              <p>Once you reach your goal, receive your funds and bring your dream to life.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TESTIMONIAL -->
+      <section class="section testimonial-section">
+        <div class="container">
+          <div class="testimonial-inner">
+            <div class="quote-mark">"</div>
+            <p class="testimonial-text">FundForge didn't just fund my project — it gave me a community of believers who
+              championed my vision every step of the way.</p>
+            <div class="testimonial-author">
+              <div class="author-avatar">NM</div>
+              <div>
+                <div class="author-name">Naledi Mokwena</div>
+                <div class="author-role">Creator, EcoBeads SA · Raised R280,000</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /home -->
+
+    <!-- ===== EXPLORE PAGE ===== -->
+    <div id="page-explore" class="page">
+      <div class="page-hero">
+        <div class="container">
+          <h1 class="page-title">Explore Projects</h1>
+          <p class="page-sub">Discover and back the most exciting campaigns from creators around the world.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="explore-controls">
+          <div class="search-box">
+            <span class="search-icon">⌕</span>
+            <input type="text" id="searchInput" placeholder="Search projects..." oninput="filterProjects()">
+          </div>
+          <div class="filter-tabs" id="filterTabs">
+            <button class="filter-tab active" onclick="setFilter('all', this)">All</button>
+            <button class="filter-tab" onclick="setFilter('Technology', this)">Technology</button>
+            <button class="filter-tab" onclick="setFilter('Arts', this)">Arts</button>
+            <button class="filter-tab" onclick="setFilter('Environment', this)">Environment</button>
+            <button class="filter-tab" onclick="setFilter('Education', this)">Education</button>
+            <button class="filter-tab" onclick="setFilter('Health', this)">Health</button>
+            <button class="filter-tab" onclick="setFilter('Food', this)">Food</button>
+          </div>
+          <select class="sort-select" onchange="sortProjects(this.value)">
+            <option value="newest">Newest First</option>
+            <option value="popular">Most Funded</option>
+            <option value="ending">Ending Soon</option>
+            <option value="goal">By Goal</option>
+          </select>
+        </div>
+        <div class="projects-grid" id="exploreGrid"></div>
+        <div class="empty-state" id="emptyState" style="display:none">
+          <div class="empty-icon">◎</div>
+          <h3>No projects found</h3>
+          <p>Try a different search term or category.</p>
+        </div>
+      </div>
+    </div><!-- /explore -->
+
+    <!-- ===== CREATE PROJECT PAGE ===== -->
+    <div id="page-create" class="page">
+      <div class="page-hero">
+        <div class="container">
+          <h1 class="page-title">Launch Your Project</h1>
+          <p class="page-sub">Tell the world about your idea and start raising funds today.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="create-layout">
+          <div class="create-form-wrap">
+            <div class="form-card">
+              <div class="form-steps">
+                <div class="form-step active" data-step="1">
+                  <div class="fs-num">1</div>
+                  <div class="fs-label">Basics</div>
+                </div>
+                <div class="fs-line"></div>
+                <div class="form-step" data-step="2">
+                  <div class="fs-num">2</div>
+                  <div class="fs-label">Details</div>
+                </div>
+                <div class="fs-line"></div>
+                <div class="form-step" data-step="3">
+                  <div class="fs-num">3</div>
+                  <div class="fs-label">Funding</div>
+                </div>
+              </div>
+
+              <form id="createProjectForm" onsubmit="submitProject(event)">
+
+                <!-- Step 1 -->
+                <div class="form-panel active" id="panel1">
+                  <h3 class="panel-title">Tell us about your project</h3>
+                  <div class="field-group">
+                    <label class="field-label">Project Title *</label>
+                    <input type="text" class="field-input" id="projTitle"
+                      placeholder="Give your project a memorable title" required>
+                    <span class="field-error" id="err-title"></span>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label">Category *</label>
+                    <select class="field-input" id="projCategory" required>
+                      <option value="">Select a category</option>
+                      <option>Technology</option>
+                      <option>Arts</option>
+                      <option>Environment</option>
+                      <option>Education</option>
+                      <option>Health</option>
+                      <option>Food</option>
+                    </select>
+                    <span class="field-error" id="err-cat"></span>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label">Short Tagline *</label>
+                    <input type="text" class="field-input" id="projTagline"
+                      placeholder="One sentence that captures your vision" maxlength="120" required>
+                    <span class="char-count"><span id="taglineCount">0</span>/120</span>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label">Project Image URL</label>
+                    <input type="url" class="field-input" id="projImage" placeholder="https://images.unsplash.com/...">
+                    <div class="image-preview" id="imagePreview">
+                      <span>Image preview will appear here</span>
+                    </div>
+                  </div>
+                  <div class="form-nav">
+                    <button type="button" class="btn btn-primary" onclick="nextStep(2)">Continue →</button>
+                  </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="form-panel" id="panel2">
+                  <h3 class="panel-title">Describe your project</h3>
+                  <div class="field-group">
+                    <label class="field-label">Full Description *</label>
+                    <textarea class="field-input" id="projDescription" rows="8"
+                      placeholder="Describe your project in detail. What problem does it solve? What's your plan? Why are you the right person to do this?"
+                      required></textarea>
+                    <span class="field-error" id="err-desc"></span>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label">Creator / Team Name *</label>
+                    <input type="text" class="field-input" id="projCreator" placeholder="Your name or team name"
+                      required>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label">Location</label>
+                    <input type="text" class="field-input" id="projLocation" placeholder="City, Country">
+                  </div>
+                  <div class="form-nav">
+                    <button type="button" class="btn btn-ghost" onclick="prevStep(1)">← Back</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">Continue →</button>
+                  </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="form-panel" id="panel3">
+                  <h3 class="panel-title">Set your funding goal</h3>
+                  <div class="field-group">
+                    <label class="field-label">Funding Goal (R) *</label>
+                    <div class="input-prefix-wrap">
+                      <span class="input-prefix">R</span>
+                      <input type="number" class="field-input with-prefix" id="projGoal" placeholder="50000" min="100"
+                        required>
+                    </div>
+                    <span class="field-error" id="err-goal"></span>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label">Campaign End Date *</label>
+                    <input type="date" class="field-input" id="projDeadline" required>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label">Reward Tiers (Optional)</label>
+                    <div class="rewards-builder" id="rewardsBuilder">
+                      <div class="reward-empty">No reward tiers added yet.</div>
+                    </div>
+                    <button type="button" class="btn btn-ghost btn-sm" onclick="addRewardTier()">+ Add Reward
+                      Tier</button>
+                  </div>
+                  <div class="launch-preview" id="launchPreview"></div>
+                  <div class="form-nav">
+                    <button type="button" class="btn btn-ghost" onclick="prevStep(2)">← Back</button>
+                    <button type="submit" class="btn btn-hero">🚀 Launch Project</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+          <aside class="create-sidebar">
+            <div class="tip-card">
+              <div class="tip-icon">💡</div>
+              <h4>Tips for Success</h4>
+              <ul class="tip-list">
+                <li>Set a realistic goal — start smaller</li>
+                <li>Use high-quality project images</li>
+                <li>Write a compelling story</li>
+                <li>Offer creative rewards</li>
+                <li>Update backers frequently</li>
+              </ul>
+            </div>
+            <div class="tip-card tip-card-dark">
+              <div class="tip-icon">📊</div>
+              <h4>Platform Stats</h4>
+              <div class="tip-stat">
+                <span>Avg. success rate</span>
+                <span class="tip-val">64%</span>
+              </div>
+              <div class="tip-stat">
+                <span>Avg. backers/project</span>
+                <span class="tip-val">127</span>
+              </div>
+              <div class="tip-stat">
+                <span>Avg. campaign length</span>
+                <span class="tip-val">33 days</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div><!-- /create -->
+
+    <!-- ===== PROJECT DETAIL PAGE ===== -->
+    <div id="page-detail" class="page">
+      <div id="detailContent"></div>
+    </div>
+
+    <!-- ===== DASHBOARD PAGE ===== -->
+    <div id="page-dashboard" class="page">
+      <div class="page-hero">
+        <div class="container">
+          <h1 class="page-title">My Dashboard</h1>
+          <p class="page-sub" id="dashWelcome">Welcome back!</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="dash-stats" id="dashStats"></div>
+        <div class="dash-tabs">
+          <button class="dash-tab active" onclick="switchDashTab('myProjects', this)">My Projects</button>
+          <button class="dash-tab" onclick="switchDashTab('myBacking', this)">Projects I've Backed</button>
+          <button class="dash-tab" onclick="switchDashTab('myUpdates', this)">Post Update</button>
+        </div>
+        <div id="dashMyProjects" class="dash-panel active"></div>
+        <div id="dashMyBacking" class="dash-panel"></div>
+        <div id="dashMyUpdates" class="dash-panel">
+          <div class="form-card" style="max-width:600px">
+            <h3 class="panel-title">Post a Project Update</h3>
+            <div class="field-group">
+              <label class="field-label">Select Project</label>
+              <select class="field-input" id="updateProject"></select>
+            </div>
+            <div class="field-group">
+              <label class="field-label">Update Title</label>
+              <input type="text" class="field-input" id="updateTitle" placeholder="What's new?">
+            </div>
+            <div class="field-group">
+              <label class="field-label">Update Body</label>
+              <textarea class="field-input" id="updateBody" rows="5"
+                placeholder="Share progress, milestones or news with your backers..."></textarea>
+            </div>
+            <button class="btn btn-primary" onclick="postUpdate()">Post Update</button>
+          </div>
+        </div>
+      </div>
+    </div><!-- /dashboard -->
+
+    <!-- ===== CONTACT PAGE ===== -->
+    <div id="page-contact" class="page">
+      <div class="page-hero">
+        <div class="container">
+          <h1 class="page-title">Get in Touch</h1>
+          <p class="page-sub">Have a question? We'd love to hear from you.</p>
+        </div>
+      </div>
+      <div class="container">
+        <div class="contact-layout">
+          <div class="contact-form-wrap">
+            <div class="form-card">
+              <form onsubmit="submitContact(event)">
+                <div class="field-group">
+                  <label class="field-label">Full Name</label>
+                  <input type="text" class="field-input" required placeholder="Your full name">
+                </div>
+                <div class="field-group">
+                  <label class="field-label">Email Address</label>
+                  <input type="email" class="field-input" required placeholder="you@example.com">
+                </div>
+                <div class="field-group">
+                  <label class="field-label">Subject</label>
+                  <select class="field-input">
+                    <option>General Inquiry</option>
+                    <option>Creator Support</option>
+                    <option>Backer Issue</option>
+                    <option>Report a Problem</option>
+                    <option>Partnership</option>
+                  </select>
+                </div>
+                <div class="field-group">
+                  <label class="field-label">Message</label>
+                  <textarea class="field-input" rows="6" required placeholder="How can we help you?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Send Message</button>
+              </form>
+            </div>
+          </div>
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="ci-icon">✉</div>
+              <div>
+                <div class="ci-label">Email Us</div>
+                <div class="ci-val">hello@fundforge.co.za</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">📍</div>
+              <div>
+                <div class="ci-label">Based In</div>
+                <div class="ci-val">Johannesburg, South Africa</div>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="ci-icon">⏱</div>
+              <div>
+                <div class="ci-label">Response Time</div>
+                <div class="ci-val">Within 24 hours</div>
+              </div>
+            </div>
+            <div class="contact-social">
+              <a href="#" class="social-btn">Twitter</a>
+              <a href="#" class="social-btn">Instagram</a>
+              <a href="#" class="social-btn">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- /contact -->
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="logo">
+            <span class="logo-icon">◈</span>
+            <span class="logo-text">Fund<em>Forge</em></span>
+          </div>
+          <p>Empowering creators and backers to build a better tomorrow, together.</p>
+          <div class="footer-social">
+            <a href="#" class="fs-link">✦</a>
+            <a href="#" class="fs-link">◈</a>
+            <a href="#" class="fs-link">★</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h5>Platform</h5>
+          <a href="#" onclick="showPage('explore')">Explore Projects</a>
+          <a href="#" onclick="showPage('create')">Start a Project</a>
+          <a href="#" onclick="showPage('dashboard')">Dashboard</a>
+        </div>
+        <div class="footer-col">
+          <h5>Company</h5>
+          <a href="#">About Us</a>
+          <a href="#">How It Works</a>
+          <a href="#" onclick="showPage('contact')">Contact</a>
+          <a href="#">Blog</a>
+        </div>
+        <div class="footer-col">
+          <h5>Legal</h5>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 FundForge. All rights reserved.</p>
+        <p class="footer-credit">Designed By <strong>Shumani Monyai</strong></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== MODALS ===== -->
+
+  <!-- LOGIN MODAL -->
+  <div class="modal-overlay" id="loginModal" onclick="closeModalOutside(event,'loginModal')">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('loginModal')">✕</button>
+      <div class="modal-header">
+        <div class="modal-logo">◈</div>
+        <h2>Welcome Back</h2>
+        <p>Sign in to your FundForge account</p>
+      </div>
+      <form onsubmit="handleLogin(event)">
+        <div class="field-group">
+          <label class="field-label">Email</label>
+          <input type="email" class="field-input" id="loginEmail" required placeholder="you@example.com">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Password</label>
+          <div class="pw-wrap">
+            <input type="password" class="field-input" id="loginPassword" required placeholder="••••••••">
+            <button type="button" class="pw-toggle" onclick="togglePw('loginPassword', this)">Show</button>
+          </div>
+        </div>
+        <div class="modal-error" id="loginError"></div>
+        <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+        <div class="modal-switch">
+          Don't have an account? <a href="#" onclick="switchModal('loginModal','registerModal')">Sign Up</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- REGISTER MODAL -->
+  <div class="modal-overlay" id="registerModal" onclick="closeModalOutside(event,'registerModal')">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('registerModal')">✕</button>
+      <div class="modal-header">
+        <div class="modal-logo">◈</div>
+        <h2>Create Account</h2>
+        <p>Join the FundForge community</p>
+      </div>
+      <form onsubmit="handleRegister(event)">
+        <div class="field-group">
+          <label class="field-label">Full Name</label>
+          <input type="text" class="field-input" id="regName" required placeholder="Your full name">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Email</label>
+          <input type="email" class="field-input" id="regEmail" required placeholder="you@example.com">
+        </div>
+        <div class="field-group">
+          <label class="field-label">Password</label>
+          <div class="pw-wrap">
+            <input type="password" class="field-input" id="regPassword" required placeholder="Min. 8 characters">
+            <button type="button" class="pw-toggle" onclick="togglePw('regPassword', this)">Show</button>
+          </div>
+          <div class="pw-strength" id="pwStrength"></div>
+        </div>
+        <div class="field-group">
+          <label class="field-label">Confirm Password</label>
+          <input type="password" class="field-input" id="regConfirm" required placeholder="Repeat password">
+        </div>
+        <div class="modal-error" id="registerError"></div>
+        <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+        <div class="modal-switch">
+          Already have an account? <a href="#" onclick="switchModal('registerModal','loginModal')">Sign In</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- CONTRIBUTE MODAL -->
+  <div class="modal-overlay" id="contributeModal" onclick="closeModalOutside(event,'contributeModal')">
+    <div class="modal">
+      <button class="modal-close" onclick="closeModal('contributeModal')">✕</button>
+      <div class="modal-header">
+        <div class="modal-logo">★</div>
+        <h2>Back This Project</h2>
+        <p id="contributeProjectName">Loading...</p>
+      </div>
+      <div class="reward-options" id="rewardOptions"></div>
+      <div class="field-group">
+        <label class="field-label">Custom Amount (R)</label>
+        <div class="input-prefix-wrap">
+          <span class="input-prefix">R</span>
+          <input type="number" class="field-input with-prefix" id="contributeAmount" placeholder="Enter amount"
+            min="10">
+        </div>
+      </div>
+      <div class="field-group">
+        <label class="field-label">Card Number</label>
+        <input type="text" class="field-input" id="cardNum" placeholder="4242 4242 4242 4242" maxlength="19"
+          oninput="formatCard(this)">
+      </div>
+      <div class="payment-row">
+        <div class="field-group">
+          <label class="field-label">Expiry</label>
+          <input type="text" class="field-input" id="cardExp" placeholder="MM/YY" maxlength="5"
+            oninput="formatExpiry(this)">
+        </div>
+        <div class="field-group">
+          <label class="field-label">CVV</label>
+          <input type="text" class="field-input" id="cardCvv" placeholder="123" maxlength="3">
+        </div>
+      </div>
+      <div class="mock-payment-notice">🔒 Secure mock payment — no real charges will be made</div>
+      <div class="modal-error" id="contributeError"></div>
+      <button class="btn btn-hero btn-full" onclick="processContribution()">Confirm Backing</button>
+    </div>
+  </div>
+
+  <!-- SUCCESS TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
